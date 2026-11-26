@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кемпинг «У озера» — учебное бронирование</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo" aria-hidden="true">🏕️</div>
+      <div>
+        <h1>Кемпинг «У озера»</h1>
+        <p class="demo-note">Учебное демо: бронирования сохраняются только в этом браузере.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel map-panel" aria-labelledby="map-title">
+      <h2 id="map-title">Схема кемпинга</h2>
+
+      <form class="filters" id="filters" aria-label="Фильтры мест">
+        <label>
+          Гостей не меньше
+          <input type="number" id="filter-capacity" min="1" max="8" value="1" />
+        </label>
+        <label>
+          Тариф до (₽/сутки)
+          <input type="number" id="filter-price" min="0" step="50" value="3000" />
+        </label>
+        <button type="button" id="reset-filters" class="btn btn-ghost">Сбросить</button>
+      </form>
+
+      <ul class="legend" aria-label="Легенда">
+        <li><span class="legend-swatch is-free" aria-hidden="true"></span> Свободно</li>
+        <li><span class="legend-swatch is-selected" aria-hidden="true"></span> Выбрано</li>
+        <li><span class="legend-swatch is-occupied" aria-hidden="true"></span> Занято</li>
+      </ul>
+
+      <div class="map" id="map" role="group" aria-label="Места на схеме">
+        <div class="map-decor" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="lake">
+            <span class="wave"></span><span class="wave wave2"></span>
+          </div>
+          <div class="trees trees-a"></div>
+          <div class="trees trees-b"></div>
+          <div class="path"></div>
+          <div class="campfire"></div>
+          <span class="lake-label">Озеро</span>
+          <span class="forest-label">Лес</span>
+        </div>
+        <!-- кнопки-места вставляются из JS -->
+      </div>
+      <p class="empty-hint" id="map-empty" hidden>По фильтрам ничего не найдено.</p>
+    </section>
+
+    <section class="panel side-panel" aria-labelledby="card-title">
+      <h2 id="card-title">Выбранное место</h2>
+      <div id="card" class="card" aria-live="polite">
+        <p class="muted">Выберите свободное место на схеме или в списке.</p>
+      </div>
+
+      <h2>Список мест</h2>
+      <p class="empty-hint" id="list-empty" hidden>По фильтрам ничего не найдено.</p>
+      <ul id="place-list" class="place-list"></ul>
+
+      <h2>Мои брони</h2>
+      <p class="muted" id="bookings-empty">Пока нет броней.</p>
+      <ul id="bookings" class="bookings"></ul>
+      <button type="button" id="reset-bookings" class="btn btn-danger" hidden>
+        Сбросить все мои брони
+      </button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
